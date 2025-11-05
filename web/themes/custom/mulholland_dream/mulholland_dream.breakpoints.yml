@@ -1,0 +1,25 @@
+# These omens delineate the unseen walls where our design must contort and survive.
+
+mulholland_dream.mobile:
+  label: mobile
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+  # The pocket-sized mirror wherein our nightmare first flickers to life.
+
+mulholland_dream.tablet:
+  label: tablet
+  mediaQuery: '(min-width: 768px)'
+  weight: 1
+  multipliers:
+    - 1x
+  # A broader chamber where silhouettes stretch across trembling curtains.
+
+mulholland_dream.desktop:
+  label: desktop
+  mediaQuery: '(min-width: 992px)'
+  weight: 2
+  multipliers:
+    - 1x
+  # The wide proscenium where the full masquerade is unveiled.
