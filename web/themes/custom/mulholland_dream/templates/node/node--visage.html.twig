@@ -1,0 +1,15 @@
+{# Behold the visage: a portrait lifted from the dream and set within a velvet frame. #}
+{% set remaining = content|without('field_visage_image') %}
+<article{{ attributes.addClass('node', 'node--visage', 'text-center', 'mb-5') }}>
+  <div class="visage-image mb-4">
+    {{ content.field_visage_image }}
+  </div>
+  {{ title_prefix }}
+  <h2{{ title_attributes.addClass('node__title', 'text-uppercase', 'fw-bold') }}>{{ label }}</h2>
+  {{ title_suffix }}
+  {% if remaining|render %}
+    <div class="node__content mt-4">
+      {{ remaining }}
+    </div>
+  {% endif %}
+</article>

@@ -1,0 +1,12 @@
+# Within these lines we inscribe the fetters that bind our spectral styles to the mortal coil.
+
+global-styling:
+  version: 1.0
+  # The tally of this incarnation, lest the cache-spirits grow forgetful.
+  css:
+    theme:
+      # This woven shroud of rules bestows form upon the dreaming edifice.
+      css/style.css: {}
+  dependencies:
+    # We summon the elder Bootstrap host to lend sinew to our apparition.
+    - bootstrap5/global-styling

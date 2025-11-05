@@ -1,0 +1,16 @@
+{# This charm seizes the site's true name and crowns it with dreadful finery. #}
+<div class="branding d-flex flex-column align-items-center text-center">
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="mb-3">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="img-fluid" />
+    </a>
+  {% endif %}
+  {% if site_name %}
+    <a href="{{ path('<front>') }}" class="text-decoration-none text-light">
+      <span class="display-4 text-uppercase">{{ site_name }}</span>
+    </a>
+  {% endif %}
+  {% if site_slogan %}
+    <p class="lead fst-italic mt-2 mb-0">{{ site_slogan }}</p>
+  {% endif %}
+</div>

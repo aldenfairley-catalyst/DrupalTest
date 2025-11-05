@@ -1,0 +1,33 @@
+# This file is the phylactery wherein our twilight creation keeps its trembling soul.
+
+name: Mulholland Dream
+# A name whispered in hushed corridors where hope and dread entwine.
+
+type: theme
+# Its ordained guise within the grim ledger of Drupal.
+
+base theme: bootstrap5
+# It walks upon the venerable bones of Bootstrap, borrowing their silent strength.
+
+core_version_requirement: ^10 || ^11
+# It shall not bend its knee to ancient cores grown brittle with time.
+
+description: 'A theme of dreams, dread, and duality, summoned from the film Mulholland Drive.'
+# A warning etched for wanderers who chance upon this nocturne.
+
+libraries:
+  # These bindings shackle the woven shadows unto our work.
+  - mulholland_dream/global-styling
+
+regions:
+  # Here are the spectral dominions where content shall linger.
+  header: 'Header'
+  # The attic wherein the site name echoes like a mournful hymn.
+  nav_primary: 'Primary Navigation'
+  # The labyrinthine hall of choices and whispered promises.
+  content: 'Main Content'
+  # The grand proscenium where tragedies reveal their pallid faces.
+  sidebar: 'Sidebar'
+  # A sealed corridor reserved for future phantoms.
+  footer: 'Footer (Silencio)'
+  # The cavernous stage draped in vermilion curtains of velvet gloom.

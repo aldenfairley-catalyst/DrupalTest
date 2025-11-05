@@ -1,0 +1,21 @@
+{# This vessel reshapes each tale into a shadowed missive upon our stage. #}
+<article{{ attributes.addClass('node', 'bg-dark', 'p-4', 'p-md-5', 'mb-5', 'shadow-lg', 'border', 'border-0') }}>
+  {# Within this header the title glimmers like a candle in fog. #}
+  {% if label %}
+    <header class="mb-4">
+      {{ title_prefix }}
+      {% if not page %}
+        <h2{{ title_attributes.addClass('h1', 'text-uppercase', 'mb-3') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% else %}
+        <h1{{ title_attributes.addClass('display-5', 'text-uppercase', 'mb-3') }}>{{ label }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+    </header>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content }}
+  </div>
+</article>
