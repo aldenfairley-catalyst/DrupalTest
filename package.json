@@ -1,0 +1,13 @@
+{
+  "name": "mulholland_dream-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local tooling for the Mulholland Dream Drupal theme.",
+  "scripts": {
+    "build": "sass --no-source-map web/themes/custom/mulholland_dream/scss/style.scss web/themes/custom/mulholland_dream/css/style.css",
+    "watch": "sass --watch web/themes/custom/mulholland_dream/scss/style.scss:web/themes/custom/mulholland_dream/css/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.72.0"
+  }
+}
