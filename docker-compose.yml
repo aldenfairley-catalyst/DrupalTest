@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  drupal:
+    image: drupal:10-apache
+    ports:
+      - "8080:80"
+    environment:
+      DRUPAL_DB_HOST: db
+      DRUPAL_DB_NAME: drupal
+      DRUPAL_DB_USER: drupal
+      DRUPAL_DB_PASSWORD: drupal
+    depends_on:
+      - db
+    volumes:
+      - drupal-root:/var/www/html
+      - ./web/themes/custom/mulholland_dream:/var/www/html/themes/custom/mulholland_dream
+
+  db:
+    image: mariadb:10.6
+    environment:
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupal
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+  composer:
+    image: composer:2
+    working_dir: /var/www/html
+    volumes:
+      - drupal-root:/var/www/html
+      - ./web/themes/custom/mulholland_dream:/var/www/html/themes/custom/mulholland_dream
+
+volumes:
+  drupal-root:
+  db-data:

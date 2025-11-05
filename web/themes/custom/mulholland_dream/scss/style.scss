@@ -1,5 +1,5 @@
 // scss/style.scss — The primary incantation.
-@import 'variables';
+@use 'variables' as *;
 
 body {
   background-color: $color-shadow; // {gothic} A chamber where whispers cling to the walls.
@@ -16,7 +16,7 @@ a {
   color: $color-dream-betty; // {gothic} A naive flare in the dark.
 }
 a:hover {
-  color: lighten($color-dream-betty, 15%);
+  color: #FFC9D3;
 }
 
 .region-footer {
