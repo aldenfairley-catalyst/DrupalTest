@@ -1,9 +1,0 @@
-# mulholland_dream.libraries.yml
-# A scroll binding the phantasmal energies of style.
-global-styling:
-  version: 1.0
-  css:
-    theme:
-      css/style.css: {}
-  dependencies:
-    - bootstrap5/global-styling
