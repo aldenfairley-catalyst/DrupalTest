@@ -1,0 +1,39 @@
+/* Compiled styles for Mulholland Dream theme */
+/* The CSS below mirrors the SCSS definitions and resolves color functions such as lighten(). */
+body {
+  background-color: #181818;
+  color: #f0f0f0;
+  font-family: 'Georgia', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #f0f0f0;
+}
+
+a {
+  color: #FFC0CB;
+}
+a:hover {
+  color: #FFC9D3;
+}
+
+.region-footer {
+  background: url('../images/bg.001.jpg') center/cover no-repeat;
+  padding: 2rem;
+  border-top: 5px solid #8B0000;
+}
+
+.main-content-wrapper {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  -webkit-border-image: url('../images/asset.001.png') 30 stretch;
+  border-image: url('../images/asset.001.png') 30 stretch;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #f0f0f0;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #FFC0CB;
+}
