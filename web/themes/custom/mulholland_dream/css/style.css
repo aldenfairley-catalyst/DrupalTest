@@ -1,265 +1,39 @@
-/* O mortal traveler, these woven threads cloak the site in dream-haunted raiment. */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
-:root {
-  --color-void: #0a0a0a;
-  --color-wraith: #f0f0f0;
-  --color-shadow: #181818;
-  --color-transition-key: #001f8b;
-  --color-danger-curtain: #8b0000;
-  --color-dream-betty: #ffc0cb;
-  --font-primary: 'Georgia', serif;
-  --font-heading: 'Playfair Display', serif;
+/* Compiled styles for Mulholland Dream theme */
+/* The CSS below mirrors the SCSS definitions and resolves color functions such as lighten(). */
+body {
+  background-color: #181818;
+  color: #f0f0f0;
+  font-family: 'Georgia', serif;
 }
 
-body {
-  background-color: var(--color-shadow);
-  color: var(--color-wraith);
-  font-family: var(--font-primary);
-  line-height: 1.7;
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #f0f0f0;
 }
 
 a {
-  color: var(--color-dream-betty);
-  transition: color 0.3s ease;
+  color: #FFC0CB;
+}
+a:hover {
+  color: #FFC9D3;
 }
 
-a:hover,
-a:focus {
-  color: #ffd6e1;
-  text-decoration: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  color: var(--color-wraith);
-  letter-spacing: 0.06em;
-}
-
-.navbar-dark {
-  background-color: rgba(10, 10, 10, 0.85);
-  border-bottom: 2px solid var(--color-danger-curtain);
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: var(--color-wraith);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus,
-.navbar-dark .navbar-nav .nav-link.is-active {
-  color: var(--color-dream-betty);
-}
-
-.hero-banner {
-  position: relative;
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.hero-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.15) 0%, rgba(10, 10, 10, 0.95) 100%);
-}
-
-.hero-banner__inner {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 3rem 1.5rem;
-}
-
-.hero-banner__title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.hero-banner__tagline {
-  font-style: italic;
-  font-size: clamp(1.25rem, 3vw, 2rem);
+.region-footer {
+  background: url('../images/bg.001.jpg') center/cover no-repeat;
+  padding: 2rem;
+  border-top: 5px solid #8B0000;
 }
 
 .main-content-wrapper {
-  background-color: rgba(12, 12, 12, 0.92);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   -webkit-border-image: url('../images/asset.001.png') 30 stretch;
   border-image: url('../images/asset.001.png') 30 stretch;
-  padding: 2.5rem 1.75rem;
-  margin-top: -3rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-@media (min-width: 992px) {
-  .main-content-wrapper {
-    padding: 3.5rem 3rem;
-  }
+.navbar-dark .navbar-nav .nav-link {
+  color: #f0f0f0;
 }
-
-.node--type-visage .node__content {
-  text-align: center;
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #FFC0CB;
 }
-
-.node--type-visage .visage-image {
-  border: 6px solid var(--color-danger-curtain);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
-  margin-bottom: 1.5rem;
-}
-
-.node--type-visage .node__title {
-  font-size: 1.75rem;
-  color: var(--color-dream-betty);
-}
-
-.region-footer {
-  background: url('../images/bg.001.jpg') center/cover no-repeat, var(--color-void);
-  padding: 3rem 1.5rem;
-  border-top: 6px solid var(--color-danger-curtain);
-  text-align: center;
-}
-
-.region-footer .menu a {
-  color: var(--color-wraith);
-}
-
-.region-footer .menu a:hover {
-  color: var(--color-dream-betty);
-}
-
-.region-footer__veil {
-  background: rgba(10, 10, 10, 0.8);
-  padding: 2rem;
-}
-
-.footer-copy {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-size: 0.85rem;
-}
-
-.contact-form {
-  background-color: rgba(0, 31, 139, 0.15);
-  border: 2px solid var(--color-transition-key);
-  padding: 2rem;
-  border-radius: 0;
-}
-
-.contact-form .form-submit {
-  background-color: var(--color-transition-key);
-  border: none;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 0.75rem 2.5rem;
-}
-
-.contact-form .form-submit::before {
-  content: '\1F511';
-  margin-right: 0.5rem;
-}
-
-.contact-form .form-submit:hover,
-.contact-form .form-submit:focus {
-  background-color: #1236a9;
-}
-
-.view-gallery .views-row {
-  margin-bottom: 2.5rem;
-}
-
-.view-gallery .visage-thumbnail {
-  display: block;
-  border: 4px solid rgba(139, 0, 0, 0.85);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
-}
-
-.view-gallery .visage-thumbnail img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.view-libretto .views-row {
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 2rem;
-}
-
-blockquote {
-  border-left: 4px solid var(--color-danger-curtain);
-  padding-left: 1rem;
-  font-style: italic;
-  color: #ddd;
-}
-
-.form-item input,
-.form-item textarea,
-.form-item select {
-  background-color: rgba(24, 24, 24, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--color-wraith);
-}
-
-.form-item input:focus,
-.form-item textarea:focus,
-.form-item select:focus {
-  border-color: var(--color-transition-key);
-  box-shadow: 0 0 0 0.2rem rgba(0, 31, 139, 0.25);
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: rgba(255, 192, 203, 0.05);
-}
-
-.breadcrumb {
-  background: transparent;
-  color: rgba(240, 240, 240, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.breadcrumb a {
-  color: rgba(255, 192, 203, 0.8);
-}
-
-.sidebar .block {
-  margin-bottom: 2.5rem;
-  padding: 1.5rem;
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(139, 0, 0, 0.35);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.6);
-}
-
-.sidebar .block h2 {
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-}
-
-.footer-secondary-menu {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.footer-secondary-menu li {
-  list-style: none;
-}
-
-/* Thus is the masque complete, until new sorrows crave embellishment. */

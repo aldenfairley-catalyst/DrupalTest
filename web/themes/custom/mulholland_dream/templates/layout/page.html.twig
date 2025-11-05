@@ -1,58 +1,26 @@
-{# Within this parchment we redraw the stage upon which the phantoms declaim. #}
-{% set hero_image_path = directory ~ '/images/hero.001.jpg' %}
-{% set curtain_border = directory ~ '/images/asset.001.png' %}
-
-<header role="banner" class="hero-banner" style="background-image: url('{{ hero_image_path }}');">
-  {# A mantle of night enfolds the visitor as the dream begins. #}
-  <div class="hero-banner__inner">
-    {% if site_name %}
-      <h1 class="hero-banner__title">{{ site_name }}</h1>
-    {% endif %}
-    {% if site_slogan %}
-      <p class="hero-banner__tagline">{{ site_slogan }}</p>
-    {% endif %}
-  </div>
-</header>
-
-{% if page.nav_primary %}
-  <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Primary">
-    {# This is the labyrinthine corridor where choices whisper like ghosts. #}
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+{# A dreadful container, to hold the fleeting dreams of the user. #}
+<header role="banner">
+  {{ page.header }}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="primaryNav">
+      <div class="collapse navbar-collapse" id="mainNav">
         {{ page.nav_primary }}
       </div>
     </div>
   </nav>
-{% endif %}
+</header>
 
-<main role="main" class="py-5">
-  {# Here the masquerade of content unfolds beneath velvet borders. #}
-  <div class="container">
-    <div class="main-content-wrapper">
-      <div class="row g-5">
-        <div class="col-lg-8">
-          {{ page.content }}
-        </div>
-        {% if page.sidebar %}
-          <aside class="col-lg-4 sidebar" role="complementary">
-            {# A side chamber where secret missives and relics reside. #}
-            {{ page.sidebar }}
-          </aside>
-        {% endif %}
-      </div>
+<main role="main" class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-xl-9 main-content-wrapper py-4">
+      {{ page.content }}
     </div>
   </div>
 </main>
 
-{% if page.footer %}
-  <footer class="region-footer text-light" role="contentinfo">
-    {# Upon this stage named Silencio, every echo admits its artifice. #}
-    <div class="container region-footer__veil">
-      {{ page.footer }}
-      <p class="footer-copy">&copy; {{ "now"|date("Y") }} Silencio &mdash; No hay banda.</p>
-    </div>
-  </footer>
-{% endif %}
+<footer class="region-footer mt-5" role="contentinfo">
+  {{ page.footer }}
+</footer>

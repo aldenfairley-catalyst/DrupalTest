@@ -1,2 +1,40 @@
-// From this invocation, the scattered strands of style conspire and take corporeal guise.
+// scss/style.scss — The primary incantation.
 @import 'variables';
+
+body {
+  background-color: $color-shadow; // {gothic} A chamber where whispers cling to the walls.
+  color: $color-wraith;
+  font-family: $font-primary;
+}
+
+h1, h2, h3 {
+  font-family: $font-heading; // {gothic} Titles fit for mournful proclamations.
+  color: $color-wraith;
+}
+
+a {
+  color: $color-dream-betty; // {gothic} A naive flare in the dark.
+}
+a:hover {
+  color: lighten($color-dream-betty, 15%);
+}
+
+.region-footer {
+  background: url('../images/bg.001.jpg') center/cover no-repeat;
+  padding: 2rem;
+  border-top: 5px solid $color-danger-curtain; // {gothic} The curtain’s hem, stained with memory.
+}
+
+.main-content-wrapper {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  -webkit-border-image: url('../images/asset.001.png') 30 stretch;
+  border-image: url('../images/asset.001.png') 30 stretch; // {gothic} The stage’s red drapery frames the illusion.
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: $color-wraith;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: $color-dream-betty;
+}
