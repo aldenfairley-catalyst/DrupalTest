@@ -1,0 +1,24 @@
+/* cursor.css - Custom cursor styling. */
+
+/* The custom cursor element follows the mouse and changes state when hovering
+ * over interactive elements. The base colour and size can be adjusted to
+ * match the Mulholland Dream palette.
+ */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffb6c1;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, border-color 0.3s ease;
+  z-index: 10000;
+}
+
+.custom-cursor.active {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: #ffe5ec;
+}

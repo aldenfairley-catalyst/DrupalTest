@@ -1,0 +1,41 @@
+/* scroll-effects.css - Parallax and reveal animations. */
+
+/* Generic container for parallax effects. */
+.parallax {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Elements with a data-parallax attribute will be moved vertically based on scroll. */
+.parallax [data-parallax] {
+  will-change: transform;
+}
+
+/* Reveal elements are initially hidden and slide up into view when visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Overlay used during page transitions. It fades in over the content. */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 9999;
+}
+.page-transition.active {
+  opacity: 1;
+}

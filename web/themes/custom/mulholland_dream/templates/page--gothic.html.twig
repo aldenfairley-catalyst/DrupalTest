@@ -1,0 +1,21 @@
+{#
+  page--gothic.html.twig
+
+  This template extends the base page template from the Bootstrap 5 theme and
+  appends the `theme-gothic` class to the body element. The base style
+  provided by style.css defines the look of the classic Gothic variation.
+
+  Available variables:
+    - body_attributes: HTML attributes for the <body> element.
+    - attributes: HTML attributes for the <html> element.
+    - page: A structured array of all the page content.
+#}
+
+{% extends '@bootstrap5/page.html.twig' %}
+
+{% set body_classes = body_classes|default([]) %}
+{% set body_classes = body_classes|merge(['theme-gothic']) %}
+
+{% block body_attributes %}
+  {{ parent() }} class="{{ body_classes|join(' ') }}"
+{% endblock %}

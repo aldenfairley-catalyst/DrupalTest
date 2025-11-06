@@ -1,0 +1,48 @@
+/* variations.css - Styles for page variations.
+ * These classes control the look of each variation. When a theme-X class
+ * is applied to the <body> element (by variations.js), the corresponding
+ * styles become active.
+ */
+
+/* Default/Classic Gothic uses base styles from style.css. */
+
+/* Nightmare Sequence: tilt content slightly and blur images for a disorienting feel. */
+.theme-nightmare body {
+  background-color: #0e0e0e;
+}
+.theme-nightmare h1,
+.theme-nightmare h2,
+.theme-nightmare h3 {
+  transform: rotate(-1deg);
+}
+.theme-nightmare img {
+  filter: blur(2px);
+}
+
+/* Dreamscape: deep blues and glowing accents with more spacing. */
+.theme-dreamscape body {
+  background-color: #0a1026;
+  color: #e8e8ff;
+}
+.theme-dreamscape a {
+  color: #80a0ff;
+}
+.theme-dreamscape .container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Labyrinth: horizontal scroll container with sections laid out side by side. */
+.theme-labyrinth body {
+  overflow-x: hidden;
+}
+.theme-labyrinth .labyrinth-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 400vw; /* four sections in a single horizontal strip */
+}
+.theme-labyrinth .labyrinth-section {
+  flex: 0 0 100vw;
+  height: 100vh;
+  padding: 2rem;
+}

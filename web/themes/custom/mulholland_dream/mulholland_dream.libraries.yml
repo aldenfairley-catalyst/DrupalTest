@@ -1,5 +1,7 @@
 # mulholland_dream.libraries.yml
-# A scroll binding the phantasmal energies of style.
+# Defines asset libraries for the Mulholland Dream theme.
+
+# Base global styling inherited from the Bootstrap theme.
 global-styling:
   version: 1.0
   css:
@@ -7,3 +9,66 @@ global-styling:
       css/style.css: {}
   dependencies:
     - bootstrap5/global-styling
+
+# Library for page variation logic and styles.
+variations:
+  version: 1.0
+  js:
+    js/variations.js: {}
+  css:
+    theme:
+      css/variations.css: {}
+  dependencies:
+    - core/drupal
+
+# Library providing randomised backgrounds, quotes and easter eggs.
+randomizer:
+  version: 1.0
+  js:
+    js/randomizer.js: {}
+  css:
+    theme:
+      css/randomizer.css: {}
+  dependencies:
+    - core/drupal
+
+# Library controlling colour transitions across the site.
+color-transition:
+  version: 1.0
+  js:
+    js/color-transition.js: {}
+  css:
+    theme:
+      css/color-transition.css: {}
+  dependencies:
+    - core/drupal
+
+# Scroll effects including parallax, reveal animations and page transitions.
+scroll-effects:
+  version: 1.0
+  js:
+    js/scroll-effects.js: {}
+  css:
+    theme:
+      css/scroll-effects.css: {}
+  dependencies:
+    - core/drupal
+
+# Audio controller and sound triggers.
+audio:
+  version: 1.0
+  js:
+    js/audio.js: {}
+  dependencies:
+    - core/drupal
+
+# Custom cursor implementation.
+cursor:
+  version: 1.0
+  js:
+    js/cursor.js: {}
+  css:
+    theme:
+      css/cursor.css: {}
+  dependencies:
+    - core/drupal

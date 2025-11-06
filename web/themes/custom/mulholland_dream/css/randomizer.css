@@ -1,0 +1,43 @@
+/* randomizer.css - Styles for randomised elements. */
+
+/* Quote overlay appears in the bottom-right corner and fades over time. */
+.quote-overlay {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  pointer-events: none;
+  animation: quote-fade 6s infinite;
+}
+
+@keyframes quote-fade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Silhouette element used for easter eggs. It starts near the bottom and fades away. */
+.silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 200px;
+  height: auto;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: silhouette-slide 5s forwards;
+  z-index: 9000;
+}
+
+@keyframes silhouette-slide {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}

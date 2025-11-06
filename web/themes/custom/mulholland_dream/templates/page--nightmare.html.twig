@@ -1,0 +1,17 @@
+{#
+  page--nightmare.html.twig
+
+  Applies the nightmare variation by adding the `theme-nightmare` class to
+  the body. This layout uses the same markup as the base page template but
+  relies on variations.css for its unique styling (tilted headings, blurred
+  images, etc.).
+#}
+
+{% extends '@bootstrap5/page.html.twig' %}
+
+{% set body_classes = body_classes|default([]) %}
+{% set body_classes = body_classes|merge(['theme-nightmare']) %}
+
+{% block body_attributes %}
+  {{ parent() }} class="{{ body_classes|join(' ') }}"
+{% endblock %}

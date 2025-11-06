@@ -1,18 +1,24 @@
 # mulholland_dream.info.yml
-# Here lies the phylactery of our theme, binding soul to system.
+# Extended theme information including new interactive libraries.
 name: Mulholland Dream
 type: theme
 base theme: bootstrap5
 core_version_requirement: ^10 || ^11
 
-description: 'A theme of dreams, dread, and duality, summoned from the film Mulholland Drive.'
+description: 'An interactive theme of dreams, dread, and duality.  Enriched with page variations, randomised atmospherics, colour transitions, scroll effects, soundscapes and gothic interactions.'
 
 libraries:
   - mulholland_dream/global-styling
+  - mulholland_dream/variations
+  - mulholland_dream/randomizer
+  - mulholland_dream/color-transition
+  - mulholland_dream/scroll-effects
+  - mulholland_dream/audio
+  - mulholland_dream/cursor
 
 regions:
-  header: 'Header'         # {gothic} The attic, where the name echoes.
-  nav_primary: 'Primary Navigation' # {gothic} A hallway of choices.
-  content: 'Main Content'  # {gothic} The grand stage of tragedy.
-  sidebar: 'Sidebar'       # {gothic} A sealed passage.
-  footer: 'Footer (Silencio)' # {gothic} The cellar where the curtains hang.
+  header: 'Header'
+  nav_primary: 'Primary Navigation'
+  content: 'Main Content'
+  sidebar: 'Sidebar'
+  footer: 'Footer (Silencio)'

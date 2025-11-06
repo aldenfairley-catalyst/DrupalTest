@@ -1,0 +1,15 @@
+{#
+  page--dreamscape.html.twig
+
+  Applies the dreamscape variation by adding the `theme-dreamscape` class to
+  the body. The dreamscape variation uses deep blues and glowing accents.
+#}
+
+{% extends '@bootstrap5/page.html.twig' %}
+
+{% set body_classes = body_classes|default([]) %}
+{% set body_classes = body_classes|merge(['theme-dreamscape']) %}
+
+{% block body_attributes %}
+  {{ parent() }} class="{{ body_classes|join(' ') }}"
+{% endblock %}

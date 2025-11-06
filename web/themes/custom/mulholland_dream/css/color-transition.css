@@ -1,0 +1,22 @@
+/* color-transition.css - Background colour transitions.
+ * Defines default colours and transitions that will be manipulated via JavaScript.
+ */
+
+/* CSS custom properties for base colours. These can be overridden by JavaScript
+ * using document.documentElement.style.setProperty().
+ */
+:root {
+  --color-bg-1: #181818;
+  --color-bg-2: #0a1026;
+  --color-bg-3: #301242;
+}
+
+body {
+  background-color: var(--color-bg-1);
+  transition: background-color 1s ease;
+}
+
+/* Sections that change colour individually can use this class. */
+.section-transition {
+  transition: background-color 0.5s ease;
+}

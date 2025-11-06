@@ -1,0 +1,18 @@
+{#
+  page--labyrinth.html.twig
+
+  Applies the labyrinth variation by adding the `theme-labyrinth` class to
+  the body. The labyrinth variation lays out content horizontally. Template
+  markup may be customised further by site builders to wrap sections in
+  .labyrinth-wrapper and .labyrinth-section elements. See variations.css for
+  styling.
+#}
+
+{% extends '@bootstrap5/page.html.twig' %}
+
+{% set body_classes = body_classes|default([]) %}
+{% set body_classes = body_classes|merge(['theme-labyrinth']) %}
+
+{% block body_attributes %}
+  {{ parent() }} class="{{ body_classes|join(' ') }}"
+{% endblock %}
