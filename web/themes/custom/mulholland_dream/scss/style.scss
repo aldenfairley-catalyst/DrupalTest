@@ -45,3 +45,106 @@ a:hover {
 .navbar-dark .navbar-nav .nav-link:hover {
   color: $color-dream-betty;
 }
+
+// --- Enhanced menu bar and interactive element styling ---
+
+// Give the main navbar a translucent backdrop with a subtle border. A backdrop
+// filter adds a blur effect on browsers that support it, creating a more
+// polished look.
+.navbar {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 1rem;
+}
+
+// Style the navigation links to appear more refined. Uppercase letters,
+// increased letter spacing and a semi‑bold weight signal interactivity.
+// The relative positioning allows us to draw a custom underline on hover
+// using ::after.
+.navbar-dark .navbar-nav .nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+// Create a custom underline that animates in from the left on hover. The
+// colour is inherited from the current text colour to integrate with
+// the existing theme palette.
+.navbar-dark .navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.6;
+  transition: width 0.3s ease;
+}
+
+// Expand the underline fully on hover or focus to give users clear feedback.
+.navbar-dark .navbar-nav .nav-link:hover::after,
+.navbar-dark .navbar-nav .nav-link:focus::after {
+  width: 100%;
+  opacity: 1;
+}
+
+// Keep the existing hover colour for links defined earlier. This rule
+// intentionally appears after the ::after logic to override the base colour.
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: $color-dream-betty;
+}
+
+// Enhance buttons and call‑to‑action elements to look consistent with the
+// theme. Rounded corners, soft shadows and subtle movement on hover
+// make them feel clickable and modern.
+button,
+.btn {
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  color: #181818;
+  background-color: $color-dream-betty;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: lighten($color-dream-betty, 10%);
+  transform: translateY(-2px);
+}
+
+// Provide an active state for navigation links. Drupal assigns an `active` class
+// to nav-links on the current page. Highlight the active link with the curtain
+// red to orient visitors.
+.navbar-dark .navbar-nav .nav-link.active {
+  color: $color-danger-curtain;
+}
+
+// Distinguish the navigation bar from dark backdrops by adding a soft shadow.
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+// Improve accessibility by adding a visible focus style for links and buttons
+// when navigating with a keyboard. The offset separates the outline from
+// adjacent text.
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px dashed $color-dream-betty;
+  outline-offset: 3px;
+}
+
+// Increase the line height and restrict max width on paragraphs for better
+// readability on large screens.
+p {
+  line-height: 1.6;
+  max-width: 65ch;
+}
