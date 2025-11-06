@@ -15,25 +15,37 @@
       if (context !== document) {
         return;
       }
+      if (document.body.dataset.colorTransitionLoaded) {
+        return;
+      }
+      document.body.dataset.colorTransitionLoaded = 'true';
       // Respect user preference for reduced motion.
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        delete document.body.dataset.colorTransitionLoaded;
         return;
       }
 
       // Helper to linearly interpolate between two colours.
       function lerpColor(a, b, amount) {
-        var ah = parseInt(a.replace(/#/g, ''), 16),
-            ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff,
-            bh = parseInt(b.replace(/#/g, ''), 16),
-            br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff,
-            rr = ar + amount * (br - ar),
-            rg = ag + amount * (bg - ag),
-            rb = ab + amount * (bb - ab);
+        var ah = parseInt(a.replace(/#/g, ''), 16);
+        var ar = ah >> 16;
+        var ag = (ah >> 8) & 0xff;
+        var ab = ah & 0xff;
+        var bh = parseInt(b.replace(/#/g, ''), 16);
+        var br = bh >> 16;
+        var bg = (bh >> 8) & 0xff;
+        var bb = bh & 0xff;
+        var rr = Math.round(ar + amount * (br - ar));
+        var rg = Math.round(ag + amount * (bg - ag));
+        var rb = Math.round(ab + amount * (bb - ab));
         return '#' + (1 << 24 | (rr << 16) | (rg << 8) | rb).toString(16).slice(1);
       }
 
       // Define the colours to transition through. Additional colours can be added.
-      var colours = ['#181818', '#0a1026', '#301242'];
+      var colours = settings.mulhollandDream && settings.mulhollandDream.colourStops;
+      if (!Array.isArray(colours) || colours.length < 2) {
+        colours = ['#181818', '#0a1026', '#301242'];
+      }
       var body = document.body;
 
       function onScroll() {

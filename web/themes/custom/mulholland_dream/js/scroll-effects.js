@@ -22,21 +22,19 @@
         return;
       }
 
-      // Parallax handler: adjust elements marked with data-parallax.
-      var parallaxElems = document.querySelectorAll('[data-parallax]');
-      function parallaxHandler() {
-        var scrollTop = window.scrollY;
-        parallaxElems.forEach(function (el) {
-          var speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
-          var offset = scrollTop * speed;
-          el.style.transform = 'translateY(' + offset + 'px)';
-        });
+      if (document.body.dataset.scrollEffectsLoaded) {
+        return;
       }
-      window.addEventListener('scroll', parallaxHandler, { passive: true });
+      document.body.dataset.scrollEffectsLoaded = 'true';
+
+      var prefersReducedMotion = false;
+      if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
 
       // Reveal animations using IntersectionObserver when the API is available.
-      var reveals = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
+      var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
@@ -56,32 +54,79 @@
         });
       }
 
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      // Parallax handler: adjust elements marked with data-parallax.
+      var parallaxElems = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+      function parallaxHandler() {
+        var scrollTop = window.scrollY || window.pageYOffset || 0;
+        parallaxElems.forEach(function (el) {
+          var speed = parseFloat(el.getAttribute('data-parallax')) || 0.5;
+          var offset = scrollTop * speed;
+          el.style.transform = 'translateY(' + offset + 'px)';
+        });
+      }
+      if (parallaxElems.length) {
+        window.addEventListener('scroll', parallaxHandler, { passive: true });
+        parallaxHandler();
+      }
+
       // Page transition overlay. Create it once and append to the body.
       var overlay = document.createElement('div');
       overlay.className = 'page-transition';
       document.body.appendChild(overlay);
 
-      function handleClick(e) {
-        var href = this.getAttribute('href');
+      function handleLinkClick(event) {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+          return;
+        }
+        var link = event.target.closest('a');
+        if (!link || link.classList.contains('use-ajax')) {
+          return;
+        }
+
+        var href = link.getAttribute('href');
         if (!href) {
           return;
         }
-        // Ignore in-page anchors, mailto links and JS links.
+        if (link.hasAttribute('download')) {
+          return;
+        }
+        var target = link.getAttribute('target');
+        if (target && target !== '_self') {
+          return;
+        }
+        if (link.dataset && link.dataset.noTransition !== undefined) {
+          return;
+        }
         if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('javascript:')) {
           return;
         }
-        e.preventDefault();
-        // Activate overlay and navigate after a delay.
+
+        var destination;
+        try {
+          destination = new URL(href, window.location.href);
+        }
+        catch (error) {
+          return;
+        }
+        if (destination.origin !== window.location.origin) {
+          return;
+        }
+        if (destination.hash && destination.pathname === window.location.pathname && destination.search === window.location.search) {
+          return;
+        }
+
+        event.preventDefault();
         overlay.classList.add('active');
         setTimeout(function () {
-          window.location.href = href;
+          window.location.href = destination.href;
         }, 500);
       }
 
-      // Attach click listener to all links on the page.
-      document.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', handleClick);
-      });
+      document.body.addEventListener('click', handleLinkClick);
     }
   };
 })(Drupal, drupalSettings);
