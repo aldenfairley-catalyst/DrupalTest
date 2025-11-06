@@ -2,6 +2,10 @@ body {
   background-color: #181818;
   color: #f0f0f0;
   font-family: "Georgia", serif;
+  background-image: var(--hero-bg, url("../images/bg.theatre.png"));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1, h2, h3 {
