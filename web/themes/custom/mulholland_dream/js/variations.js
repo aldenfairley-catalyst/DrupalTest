@@ -13,6 +13,13 @@
   'use strict';
   Drupal.behaviors.mulhollandVariations = {
     attach: function (context, settings) {
+      // The behaviour only makes sense for the top-level document. Drupal can
+      // re-attach behaviours to smaller DOM fragments (e.g. on Ajax responses),
+      // so bail out early in those cases to avoid duplicating work.
+      if (context !== document) {
+        return;
+      }
+
       // Ensure this runs only once per page load.
       if (document.body.dataset.variationLoaded) {
         return;
@@ -22,7 +29,8 @@
       var variations = ['gothic', 'nightmare', 'dreamscape', 'labyrinth'];
       var chosen = null;
 
-      // Attempt to read the style query parameter from the URL.
+      // Attempt to read the style query parameter from the URL. This allows
+      // authors to provide preview links such as `?style=dreamscape`.
       try {
         var params = new URLSearchParams(window.location.search);
         var styleParam = params.get('style');
@@ -33,13 +41,26 @@
         // Gracefully ignore errors in environments where URLSearchParams is unsupported.
       }
 
-      // Pick a random variation if none was specified.
+      // Next, fall back to a theme-provided default if one was provided via
+      // drupalSettings. This allows editors (or theme configuration) to keep a
+      // consistent primary look & feel while still enabling the query-string
+      // override above for previews.
+      if (!chosen) {
+        var configured = settings.mulhollandDream && settings.mulhollandDream.defaultVariation;
+        if (configured && variations.indexOf(configured) !== -1) {
+          chosen = configured;
+        }
+      }
+
+      // Pick a random variation if none was specified or configured. Randomising
+      // on each page load keeps the dream-like aesthetic when no default was set.
       if (!chosen) {
         var index = Math.floor(Math.random() * variations.length);
         chosen = variations[index];
       }
 
-      // Apply the theme class to the body element.
+      // Apply the theme class to the body element so that variations.css can
+      // scope its rules using `.theme-<variation>` selectors.
       document.body.classList.add('theme-' + chosen);
     }
   };

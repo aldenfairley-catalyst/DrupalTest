@@ -64,6 +64,18 @@ This installs the local `sass` CLI used by the build scripts defined in [`packag
 
 6. **Visit the site.** Browse to [http://localhost:8080](http://localhost:8080) and log in with the administrator credentials. Navigate to **Appearance → Mulholland Dream** to verify that it is the default theme. The header, footer, and imagery configured in the theme will be immediately visible on any Drupal page.
 
+## Front-end behaviours at a glance
+
+Mulholland Dream ships with several Drupal behaviours that lean on shared settings. Understanding how they interact will help when tweaking or extending the theme:
+
+- **`mulholland_dream_preprocess_html()`** attaches `drupalSettings.mulhollandDream` which exposes the public theme path (`themePath`) and a default visual variation (`defaultVariation`). JavaScript can therefore build asset URLs without hard-coding them and keep the look & feel consistent across navigations.
+- **`js/variations.js`** reads the `style` query parameter first, then the `defaultVariation` from `drupalSettings`, and finally randomises the look if neither is supplied. Its companion stylesheet (`css/variations.css`) scopes rules under `.theme-<variation>`.
+- **`js/randomizer.js`** and **`js/audio.js`** both use `themePath` to locate imagery and ambient audio. They also respect overrides provided via `drupalSettings.mulhollandDream.randomElements` should a module wish to supply custom assets.
+- **`js/scroll-effects.js`** coordinates parallax scrolling, reveal animations, and page transitions. When `IntersectionObserver` is not available, it falls back to a no-animation mode so that content is still displayed.
+- **`js/color-transition.js`** and **`js/cursor.js`** focus on subtle ambient effects—colour gradients and a custom cursor respectively—and bail out automatically when the user’s device or preferences would be negatively impacted (e.g. `prefers-reduced-motion`).
+
+If you extend any of these behaviours, prefer enriching the shared `drupalSettings.mulhollandDream` namespace in PHP. This keeps all dynamic configuration in one place and ensures Ajax responses inherit the same defaults.
+
 ## Day-to-day commands
 
 - Stop and remove the containers (but keep the database and Drupal files in Docker volumes):

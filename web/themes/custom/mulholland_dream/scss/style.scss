@@ -5,6 +5,13 @@ body {
   background-color: $color-shadow; // {gothic} A chamber where whispers cling to the walls.
   color: $color-wraith;
   font-family: $font-primary;
+  // Provide a CSS-variable-controlled hero background so randomizer.js can
+  // swap imagery without writing inline styles. The fallback keeps a themed
+  // backdrop in case JavaScript is disabled.
+  background-image: var(--hero-bg, url('../images/bg.theatre.png'));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1, h2, h3 {
