@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mulholland Dream Theme Demo</title>
+  <!-- Include compiled theme CSS files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/color-transition.css">
+  <link rel="stylesheet" href="css/cursor.css">
+  <link rel="stylesheet" href="css/floating-text.css">
+  <link rel="stylesheet" href="css/randomizer.css">
+  <link rel="stylesheet" href="css/scroll-effects.css">
+  <link rel="stylesheet" href="css/variations.css">
+  <!-- Inline styles to ensure a minimal height for demonstration -->
+  <style>
+    body {
+      min-height: 200vh;
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-top: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mulholland Dream Theme Demo</h1>
+  <p>Explore the interactive features of the Mulholland Dream theme. Drag the key to unlock the floating menu, move your cursor to see custom effects, and scroll to trigger animations.</p>
+
+  <!-- Define a minimal Drupal object and settings for theme scripts -->
+  <script>
+    // Basic Drupal behavior loader. Drupal attaches each behavior's attach()
+    // function with the given context and settings.
+    var Drupal = {
+      behaviors: {},
+      attachBehaviors: function (context, settings) {
+        for (var key in Drupal.behaviors) {
+          if (Drupal.behaviors.hasOwnProperty(key) && typeof Drupal.behaviors[key].attach === 'function') {
+            Drupal.behaviors[key].attach(context, settings);
+          }
+        }
+      }
+    };
+    // Expose drupalSettings with an empty themePath. When index.html lives in
+    // the theme directory, relative paths to images/audio resolve correctly.
+    var drupalSettings = { mulhollandDream: { themePath: '' } };
+  </script>
+
+  <!-- Load theme JavaScript files -->
+  <script src="js/audio.js"></script>
+  <script src="js/audio-spooky.js"></script>
+  <script src="js/color-transition.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/floating-text.js"></script>
+  <script src="js/interactive-menu.js"></script>
+  <script src="js/randomizer.js"></script>
+  <script src="js/scroll-effects.js"></script>
+  <script src="js/smoke-effect.js"></script>
+  <script src="js/variations.js"></script>
+
+  <script>
+    // Once scripts are loaded, activate behaviors.
+    // Wait for DOM content to ensure the document object exists.
+    document.addEventListener('DOMContentLoaded', function () {
+      Drupal.attachBehaviors(document, drupalSettings);
+      // Automatically reveal the floating menu after a short delay.  In the
+      // Drupal theme the menu appears when a user drags the key onto the
+      // lock.  Because this standalone demo does not support drag and
+      // drop events in this environment, simulate the unlock by
+      // programmatically toggling the menu state.  Remove the key and lock
+      // elements from the DOM and add the `show` class to the floating
+      // navigation.  This allows the navigation items (Portal, Labyrinth,
+      // Dreamscapes, Whispers, Exit) to fade into view.
+      setTimeout(function () {
+        var nav = document.getElementById('mainNav');
+        if (nav) {
+          nav.classList.remove('hidden');
+          nav.classList.add('show');
+        }
+        var key = document.getElementById('key');
+        if (key && key.parentNode) {
+          key.parentNode.removeChild(key);
+        }
+        var lock = document.getElementById('lock');
+        if (lock && lock.parentNode) {
+          lock.parentNode.removeChild(lock);
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
