@@ -21,8 +21,21 @@
       }
       document.body.dataset.randomizerLoaded = true;
 
-      // Default fallback values. Theme path is prepended by Drupal.theme.path when available.
-      var basePath = (Drupal.theme && Drupal.theme.path) ? Drupal.theme.path + '/' : '';
+      // Determine the base theme path from drupalSettings (preferred) or fall back to Drupal.theme.path.
+      var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
+      var basePath = '';
+      if (themePathSetting) {
+        basePath = themePathSetting;
+      }
+      else if (Drupal.theme && Drupal.theme.path) {
+        basePath = Drupal.theme.path;
+      }
+      if (basePath && basePath.charAt(0) !== '/') {
+        basePath = '/' + basePath;
+      }
+      if (basePath && basePath.charAt(basePath.length - 1) !== '/') {
+        basePath += '/';
+      }
       var defaults = {
         images: [
           basePath + 'images/bg.theatre.png',

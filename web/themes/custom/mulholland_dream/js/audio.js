@@ -26,7 +26,20 @@
       // Lazy-load audio on first user interaction.
       function loadSounds() {
         if (!ambient) {
-          var themePath = (Drupal.theme && Drupal.theme.path) ? Drupal.theme.path + '/' : '';
+          var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
+          var themePath = '';
+          if (themePathSetting) {
+            themePath = themePathSetting;
+          }
+          else if (Drupal.theme && Drupal.theme.path) {
+            themePath = Drupal.theme.path;
+          }
+          if (themePath && themePath.charAt(0) !== '/') {
+            themePath = '/' + themePath;
+          }
+          if (themePath && themePath.charAt(themePath.length - 1) !== '/') {
+            themePath += '/';
+          }
           ambient = new Audio(themePath + 'audio/ambient_hum.wav');
           ambient.loop = true;
           hoverSound = new Audio(themePath + 'audio/menu_hover.wav');
