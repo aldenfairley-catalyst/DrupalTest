@@ -24,22 +24,27 @@
       var ambient, hoverSound, transitionSound, whisperSound;
 
       // Lazy-load audio on first user interaction.
+      function resolveThemePath() {
+        var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
+        var themePath = '';
+        if (themePathSetting) {
+          themePath = themePathSetting;
+        }
+        else if (Drupal.theme && Drupal.theme.path) {
+          themePath = Drupal.theme.path;
+        }
+        if (themePath && themePath.charAt(0) !== '/') {
+          themePath = '/' + themePath;
+        }
+        if (themePath && themePath.charAt(themePath.length - 1) !== '/') {
+          themePath += '/';
+        }
+        return themePath;
+      }
+
       function loadSounds() {
         if (!ambient) {
-          var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
-          var themePath = '';
-          if (themePathSetting) {
-            themePath = themePathSetting;
-          }
-          else if (Drupal.theme && Drupal.theme.path) {
-            themePath = Drupal.theme.path;
-          }
-          if (themePath && themePath.charAt(0) !== '/') {
-            themePath = '/' + themePath;
-          }
-          if (themePath && themePath.charAt(themePath.length - 1) !== '/') {
-            themePath += '/';
-          }
+          var themePath = resolveThemePath();
           ambient = new Audio(themePath + 'audio/ambient_hum.wav');
           ambient.loop = true;
           hoverSound = new Audio(themePath + 'audio/menu_hover.wav');

@@ -26,7 +26,14 @@
       }
       document.body.dataset.variationLoaded = true;
 
-      var variations = ['gothic', 'nightmare', 'dreamscape', 'labyrinth'];
+      var configuredVariations = settings.mulhollandDream && settings.mulhollandDream.variations;
+      var variations = Array.isArray(configuredVariations) && configuredVariations.length
+        ? configuredVariations.map(function (item) { return (item || '').toString().trim(); })
+            .filter(function (item) { return item.length; })
+        : [];
+      if (!variations.length) {
+        variations = ['gothic', 'nightmare', 'dreamscape', 'labyrinth'];
+      }
       var chosen = null;
 
       // Attempt to read the style query parameter from the URL. This allows

@@ -20,6 +20,7 @@ variations:
       css/variations.css: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings
 
 # Library providing randomised backgrounds, quotes and easter eggs.
 randomizer:
@@ -31,6 +32,7 @@ randomizer:
       css/randomizer.css: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings
 
 # Library controlling colour transitions across the site.
 color-transition:
@@ -42,6 +44,7 @@ color-transition:
       css/color-transition.css: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings
 
 # Scroll effects including parallax, reveal animations and page transitions.
 scroll-effects:
@@ -53,6 +56,7 @@ scroll-effects:
       css/scroll-effects.css: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings
 
 # Audio controller and sound triggers.
 audio:
@@ -61,6 +65,7 @@ audio:
     js/audio.js: {}
   dependencies:
     - core/drupal
+    - core/drupalSettings
 
 # Custom cursor implementation.
 cursor:

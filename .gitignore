@@ -1,0 +1,26 @@
+# Node.js dependencies
+node_modules/
+
+# Composer dependencies and vendor builds
+vendor/
+/web/core/
+/web/modules/contrib/
+/web/profiles/contrib/
+/web/themes/contrib/
+/web/sites/default/files/
+/web/sites/default/settings.php
+
+# Build artefacts and logs
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Docker volume mounts
+.drupal-root
+

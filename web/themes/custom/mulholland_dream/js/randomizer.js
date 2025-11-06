@@ -22,20 +22,25 @@
       document.body.dataset.randomizerLoaded = true;
 
       // Determine the base theme path from drupalSettings (preferred) or fall back to Drupal.theme.path.
-      var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
-      var basePath = '';
-      if (themePathSetting) {
-        basePath = themePathSetting;
+      function resolveThemePath() {
+        var themePathSetting = settings.mulhollandDream && settings.mulhollandDream.themePath;
+        var themePath = '';
+        if (themePathSetting) {
+          themePath = themePathSetting;
+        }
+        else if (Drupal.theme && Drupal.theme.path) {
+          themePath = Drupal.theme.path;
+        }
+        if (themePath && themePath.charAt(0) !== '/') {
+          themePath = '/' + themePath;
+        }
+        if (themePath && themePath.charAt(themePath.length - 1) !== '/') {
+          themePath += '/';
+        }
+        return themePath;
       }
-      else if (Drupal.theme && Drupal.theme.path) {
-        basePath = Drupal.theme.path;
-      }
-      if (basePath && basePath.charAt(0) !== '/') {
-        basePath = '/' + basePath;
-      }
-      if (basePath && basePath.charAt(basePath.length - 1) !== '/') {
-        basePath += '/';
-      }
+
+      var basePath = resolveThemePath();
       var defaults = {
         images: [
           basePath + 'images/bg.theatre.png',
@@ -53,8 +58,20 @@
 
       // Read configuration from drupalSettings if present.
       var cfg = (settings.mulhollandDream && settings.mulhollandDream.randomElements) || {};
-      var images = cfg.images || defaults.images;
-      var quotes = cfg.quotes || defaults.quotes;
+      var images = Array.isArray(cfg.images) && cfg.images.length ? cfg.images : defaults.images;
+      var quotes = Array.isArray(cfg.quotes) && cfg.quotes.length ? cfg.quotes : defaults.quotes;
+      images = images.map(function (path) {
+        return (path || '').toString();
+      }).filter(function (path) { return path.length; });
+      quotes = quotes.map(function (quote) {
+        return (quote || '').toString();
+      }).filter(function (quote) { return quote.length; });
+      if (!images.length) {
+        images = defaults.images;
+      }
+      if (!quotes.length) {
+        quotes = defaults.quotes;
+      }
 
       // Select and apply a random background image. The CSS variable --hero-bg can be
       // used in CSS (e.g., as a background-image: var(--hero-bg)).
