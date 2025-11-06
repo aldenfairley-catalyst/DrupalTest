@@ -13,9 +13,7 @@
 
 {% extends '@bootstrap5/page.html.twig' %}
 
-{% set body_classes = body_classes|default([]) %}
-{% set body_classes = body_classes|merge(['theme-gothic']) %}
-
 {% block body_attributes %}
-  {{ parent() }} class="{{ body_classes|join(' ') }}"
+  {% set body_attributes = body_attributes|default(create_attribute()).addClass('theme-gothic') %}
+  {{ parent() }}
 {% endblock %}
