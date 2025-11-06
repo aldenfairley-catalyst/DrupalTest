@@ -1,5 +1,6 @@
 # mulholland_dream.info.yml
 # Extended theme information including new interactive libraries.
+
 name: Mulholland Dream
 type: theme
 base theme: bootstrap5
@@ -17,6 +18,9 @@ libraries:
   - mulholland_dream/cursor
   - mulholland_dream/floating-text
   - mulholland_dream/spooky-audio
+  # Attach the new interactive libraries so they load on every page.
+  - mulholland_dream/interactive-menu
+  - mulholland_dream/smoke-effect
 
 regions:
   header: 'Header'

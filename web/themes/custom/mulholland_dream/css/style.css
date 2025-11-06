@@ -142,3 +142,126 @@ p {
   line-height: 1.6;
   max-width: 65ch;
 }
+
+/* ------------------------------------------------------------------------- */
+/* Additional interactive menu styling for the Mulholland Dream enhancements. */
+/*
+ * These rules support the drag‑to‑unlock floating menu and the smoke
+ * animation added via custom JavaScript. They do not affect the
+ * existing Bootstrap navigation but are applied dynamically via JS when
+ * the menu is initialised.
+ */
+
+/* Hide elements with the `hidden` class. This is applied to the
+   floating menu until the key is dropped onto the lock. */
+.hidden {
+  display: none !important;
+}
+
+/* Container for the floating navigation. It occupies the full screen
+   and disables pointer events until unlocked. */
+.floating-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 1;
+}
+
+.floating-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.floating-menu .nav-item {
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  color: #f0f0f0;
+}
+
+.floating-menu .nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.floating-menu .nav-link img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+}
+
+.floating-menu .nav-link:hover {
+  transform: scale(1.1);
+}
+
+/* Predefined positions for each menu item. Feel free to adjust these
+   percentages to reposition icons around the viewport. They are
+   relative to the viewport dimensions. */
+.floating-menu.show .nav-item:nth-child(1) { top: 15%; left: 10%; }
+.floating-menu.show .nav-item:nth-child(2) { top: 25%; right: 10%; }
+.floating-menu.show .nav-item:nth-child(3) { bottom: 20%; left: 20%; }
+.floating-menu.show .nav-item:nth-child(4) { bottom: 25%; right: 20%; }
+.floating-menu.show .nav-item:nth-child(5) { top: 50%; left: 45%; }
+
+/* Key styling inserted via JavaScript. */
+#key {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 64px;
+  height: 64px;
+  cursor: grab;
+  z-index: 2;
+  filter: drop-shadow(0 0 4px rgba(255, 223, 100, 0.7));
+  transition: transform 0.2s ease;
+}
+
+#key:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+/* Lock/drop zone styling. A subtle blue box invites the user to drop
+   the key. When the key is over the lock the colour changes to
+   signal interactivity. */
+#lock {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(0, 102, 204, 0.3);
+  border: 2px dashed rgba(0, 102, 204, 0.6);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #c5dfff;
+  z-index: 2;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#lock.dragover {
+  background-color: rgba(0, 102, 204, 0.6);
+  border-color: rgba(0, 102, 204, 0.9);
+}

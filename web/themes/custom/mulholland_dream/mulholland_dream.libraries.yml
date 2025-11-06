@@ -97,3 +97,32 @@ cursor:
       css/cursor.css: {}
   dependencies:
     - core/drupal
+
+# -----------------------------------------------------------------------------
+# New interactive libraries introduced by the enhancement request.
+
+# Library adding an interactive drag‑to‑unlock floating menu.  This behaviour
+# constructs DOM elements for a key, lock and floating navigation on
+# page load and decorates each menu item with its corresponding icon.
+# Images are resolved relative to the theme path exposed via
+# drupalSettings.mulhollandDream.themePath, allowing the theme to live
+# anywhere under the Drupal root without modifying this script.  See
+# js/interactive-menu.js for implementation details.
+interactive-menu:
+  version: 1.0
+  js:
+    js/interactive-menu.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
+# Library that draws a subtle smoke animation behind page content.  This
+# script finds or creates a canvas element with the ID `smoke-canvas`
+# and animates semi‑transparent particles drifting upward.  It has no
+# external dependencies beyond Drupal itself.  See js/smoke-effect.js.
+smoke-effect:
+  version: 1.0
+  js:
+    js/smoke-effect.js: {}
+  dependencies:
+    - core/drupal
