@@ -7,8 +7,25 @@
 
 /**
  * Implements hook_preprocess_html().
+ *
+ * The preprocess layer exposes Drupal configuration to the front-end
+ * JavaScript behaviours through drupalSettings. Each behaviour relies on the
+ * `mulhollandDream` namespace to discover theme assets and optional runtime
+ * configuration.
  */
 function mulholland_dream_preprocess_html(array &$variables): void {
-  $variables['#attached']['drupalSettings']['mulhollandDream']['themePath'] = base_path() . drupal_get_path('theme', 'mulholland_dream');
+  // Reuse the same array reference so we can set multiple values without
+  // repeating the nested keys.
+  $settings =& $variables['#attached']['drupalSettings']['mulhollandDream'];
+
+  // Provide the theme path so that front-end behaviours can assemble URLs for
+  // images, audio files and other assets without hard-coding paths.
+  $settings['themePath'] = base_path() . drupal_get_path('theme', 'mulholland_dream');
+
+  // Offer a predictable default visual variation. Front-end code still allows
+  // query-string overrides (`?style=`) or alternate defaults supplied by other
+  // modules, but falling back to "gothic" ensures a consistent look when no
+  // override is present.
+  $settings['defaultVariation'] = $settings['defaultVariation'] ?? 'gothic';
 }
 

@@ -8,7 +8,7 @@
  *
  * Reveal: Elements with the `.reveal` class are hidden initially and become
  * visible when they enter the viewport. IntersectionObserver is used for
- * efficiency.
+ * efficiency when available and gracefully skipped otherwise.
  *
  * Page transitions: Clicking on links triggers an overlay fade-out followed
  * by navigation to the link target. Internal anchors, mailto and JS links
@@ -34,19 +34,27 @@
       }
       window.addEventListener('scroll', parallaxHandler, { passive: true });
 
-      // Reveal animations using IntersectionObserver.
+      // Reveal animations using IntersectionObserver when the API is available.
       var reveals = document.querySelectorAll('.reveal');
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        reveals.forEach(function (el) {
+          observer.observe(el);
         });
-      }, { threshold: 0.1 });
-      reveals.forEach(function (el) {
-        observer.observe(el);
-      });
+      }
+      else {
+        // Fallback: reveal elements immediately so that content is still accessible.
+        reveals.forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
 
       // Page transition overlay. Create it once and append to the body.
       var overlay = document.createElement('div');
