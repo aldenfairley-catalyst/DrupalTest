@@ -67,6 +67,26 @@ audio:
     - core/drupal
     - core/drupalSettings
 
+# Floating text library providing randomly drifting words across the screen.
+floating-text:
+  version: 1.0
+  js:
+    js/floating-text.js: {}
+  css:
+    theme:
+      css/floating-text.css: {}
+  dependencies:
+    - core/drupal
+
+# Spooky audio library for looping MIDI with reverb.
+spooky-audio:
+  version: 1.0
+  js:
+    js/audio-spooky.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
 # Custom cursor implementation.
 cursor:
   version: 1.0

@@ -48,10 +48,14 @@
           basePath + 'images/bg.curtain.png'
         ],
         quotes: [
-          'No hay banda. There is no band.',
+          // Updated dreamlike phrases to enhance the surreal atmosphere.
+          'No hay banda. There is no band.',
           'Silencio.',
-          'It is just an illusion.',
-          'I\u2019m in love. I\u2019m in love with you.',
+          'It\u2019s only a dream within a dream.',
+          'Wake up. Wake up.',
+          'The night is darkest before the dawn.',
+          'Illusion is the first of all pleasures.',
+          'There\u2019s always music in the air.',
           'This is the girl.'
         ]
       };

@@ -1,0 +1,74 @@
+/*
+ * floating-text.css
+ * Styles for the floating text effect that drifts phrases across the screen.
+ */
+
+.floating-text {
+  position: fixed;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--bs-body-font-family, sans-serif);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+@keyframes float-left {
+  from {
+    transform: translateX(-10vw);
+  }
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+@keyframes float-right {
+  from {
+    transform: translateX(110vw);
+  }
+  to {
+    transform: translateX(-10vw);
+  }
+}
+
+@keyframes float-down {
+  from {
+    transform: translateY(-10vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes float-up {
+  from {
+    transform: translateY(110vh);
+  }
+  to {
+    transform: translateY(-10vh);
+  }
+}
+
+.float-left {
+  animation-name: float-left;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.float-right {
+  animation-name: float-right;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.float-down {
+  animation-name: float-down;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.float-up {
+  animation-name: float-up;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}

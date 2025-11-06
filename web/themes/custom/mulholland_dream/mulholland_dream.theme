@@ -21,9 +21,7 @@ function mulholland_dream_preprocess_html(array &$variables): void {
   // Provide the theme path so that front-end behaviours can assemble URLs for
   // images, audio files and other assets without hard-coding paths. Normalise
   // the path so consumers can safely append relative asset locations.
-  /** @var \Drupal\Core\Extension\ExtensionPathResolverInterface $path_resolver */
-  $path_resolver = \Drupal::service('extension.path.resolver');
-  $theme_path = base_path() . $path_resolver->getPath('theme', 'mulholland_dream');
+  $theme_path = base_path() . drupal_get_path('theme', 'mulholland_dream');
   $settings['themePath'] = rtrim($theme_path, '/') . '/';
 
   // Expose the list of available page variations so that the JavaScript layer
