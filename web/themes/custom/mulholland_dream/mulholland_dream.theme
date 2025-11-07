@@ -49,5 +49,13 @@ function mulholland_dream_preprocess_html(array &$variables): void {
   if (!in_array($default_variation, $settings['variations'], TRUE)) {
     $settings['defaultVariation'] = 'gothic';
   }
+
+  // Provide a default spooky audio track so the front-end behaviour can fall
+  // back to an existing asset when a custom file is not configured. The value
+  // is stored as a relative path so JavaScript can combine it with the theme
+  // path (which already contains the trailing slash).
+  if (empty($settings['spookyTrack'])) {
+    $settings['spookyTrack'] = 'audio/ambient_hum.wav';
+  }
 }
 
